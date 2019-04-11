@@ -8,8 +8,9 @@ public class Main {
                 new Callable<String>() {
                     @Override
                     public String call() throws Exception {
+                        System.out.println("Отработка метода call");
                         Thread.sleep(1000);
-                        return "Отработка метода call";
+                        return "результат метода call";
                     }
                 }
         );

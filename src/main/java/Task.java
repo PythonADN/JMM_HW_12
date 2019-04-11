@@ -18,20 +18,18 @@ public class Task<T> {
 
         // вызывать Callable одновременно может только один поток, остальные ждут
         // загрузка Callable происходит только один раз
-        T result = resultValue;
-        if (result == null) {
+        if (resultValue == null) {
             synchronized(this) {
-                result = resultValue;
-                if (result == null) {
-                    System.out.println("Чтение результата Callable");
+                if (resultValue == null) {
+                    System.out.println("Вызов метода call у Callable");
                     try {
-                        resultValue = result = callable.call();
+                        resultValue  = callable.call();
                     } catch (Exception e) {
                         throw new MyException("Исключение при выове call у Callable", e);
                     }
                 }
             }
         }
-        return result;
+        return resultValue;
     }
 }
